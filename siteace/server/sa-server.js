@@ -8,7 +8,8 @@ Meteor.startup(function () {
     		url:"http://www.londoninternational.ac.uk/courses/undergraduate/goldsmiths/bsc-creative-computing-bsc-diploma-work-entry-route", 
     		description:"University of London International Programme.", 
     		createdOn:new Date(),
-            rating:null,
+            upvote:0,
+            downvote:0,
             comments: []
     	});
     	 Websites.insert({
@@ -16,7 +17,8 @@ Meteor.startup(function () {
     		url:"http://www.coursera.org", 
     		description:"Universal access to the world’s best education.", 
     		createdOn:new Date(),
-            rating:null,
+            upvote:0,
+            downvote:0,
             comments: []
     	});
     	Websites.insert({
@@ -24,7 +26,8 @@ Meteor.startup(function () {
     		url:"http://www.google.com", 
     		description:"Popular search engine.", 
     		createdOn:new Date(),
-            rating:null,
+            upvote:0,
+            downvote:0,
             comments: []
     	});
     }

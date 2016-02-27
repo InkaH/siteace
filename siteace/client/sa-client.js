@@ -68,7 +68,7 @@ Router.route('/website/:_id', function () {
 // helper function that returns all available websites
 Template.website_list.helpers({
 	websites:function(){
-		return Websites.find({}, {sort:{rating: -1}, limit:Session.get("itemLimit")});
+		return Websites.find({}, {sort:{upvote: -1}, limit:Session.get("itemLimit")});
 	}
 });
 
@@ -83,32 +83,20 @@ Template.website_item.events({
 		var website_id = this._id;
 		console.log("Up voting website with id "+website_id);
 		//get the rating
-      	var rating = this.rating;
-      	console.log(rating);
-      	//update the rating, if no one has rated yet the value is null
-      	if(rating == null){
-      		rating = 1;
-      		Websites.update({_id:website_id}, {$set: {rating:rating}});
-      	}
-      	else{
-     		Websites.update({_id:website_id}, {$inc: {rating:1}});
-     	}
+      	var upvote = this.upvote;
+      	console.log(upvote);
+      	//update the upvote, if no one has rated yet the value is 0
+     	Websites.update({_id:website_id}, {$inc: {upvote:1}});
 		return false;// prevent the button from reloading the page
 	}, 
 	"click .js-downvote":function(event){
 		var website_id = this._id;
 		console.log("Down voting website with id "+website_id);
 		//get the rating
-      	var rating = this.rating;
-      	console.log(rating);
-      	//update the rating, if no one has rated yet the value is null
-     	if(rating == null){
-      		rating = -1;
-      		Websites.update({_id:website_id}, {$set: {rating:rating}});
-      	}
-      	else{
-     		Websites.update({_id:website_id}, {$inc: {rating:-1}});
-     	}
+      	var downvote = this.downvote;
+      	console.log(downvote);
+      	//update the downvote, if no one has rated yet the value is 0
+     	Websites.update({_id:website_id}, {$inc: {downvote:-1}});
 		return false;// prevent the button from reloading the page
 	}
 });
